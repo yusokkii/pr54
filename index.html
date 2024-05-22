@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #fff0da;
+        }
+        h1, h2 {
+            color: #000000;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #d59347;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c56c1f;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+    <h1>Розгалужений обчислювальний процес</h1>
+    <label for="start">Початкова межа:</label>
+    <input type="number" id="start" value="-6">
+    <br>
+    <label for="end">Кінцева межа:</label>
+    <input type="number" id="end" value="6">
+    <br>
+    <label for="step">Крок:</label>
+    <input type="number" id="step" value="2">
+    <br>
+    <button onclick="calculate()">Обчислити</button>
+    <h2>Результати:</h2>
+    <ul id="results"></ul>
+
+    <script>
+        function calculate() {
+            const start = parseFloat(document.getElementById('start').value);
+            const end = parseFloat(document.getElementById('end').value);
+            const step = parseFloat(document.getElementById('step').value);
+            const results = document.getElementById('results');
+            results.innerHTML = ''; // Очищуємо попередні результати
+
+            for (let x = start; x <= end; x += step) {
+                let F;
+                if (x < 4) {
+                    F = Math.abs(x) + Math.exp(x);
+                } else if (x === 4) {
+                    F = Math.PI;
+                } else {
+                    F = 1 / Math.tan(x) + Math.log(x);
+                }
+
+                const li = document.createElement('li');
+                li.textContent = `F(${x}) = ${F}`;
+                results.appendChild(li);
+            }
+        }
+    </script>
+</body>
+</html>
